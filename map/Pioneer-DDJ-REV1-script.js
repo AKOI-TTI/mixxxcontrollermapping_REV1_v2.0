@@ -48,7 +48,7 @@ if (typeof include === "function") {
 // * Forum: https://mixxx.discourse.group/t/pioneer-ddj-rev1-mapping-update-2-6/32603
 // * MIDI: https://www.pioneerdj.com/-/media/pioneerdj/software-info/controller/ddj-rev1/ddj-rev1_midi_message_list_e1.pdf
 // * User Guide: https://manual.mixxx.org/2.6/en/hardware/controllers/pioneer_ddj_rev1
-// * Mapping Version: AKOI v2.0 mapping for the Pioneer DDJ-REV1
+// * Mapping Version: AKOI v2.1 mapping for the Pioneer DDJ-REV1
 // ****************************************************************************
 //
 //  Implemented (as per manufacturer's manual):
@@ -122,7 +122,7 @@ if (typeof include === "function") {
 //                      - Limitation: - Playing deck is always opposite of starting deck irrespective of active opposite deck
 //                                    - Controller only sends 0x52 despite Utilities mode settings Sync(0x51) and Non-Sync(0x66)  
 //		* Library Sort: 
-//                      - Decks 1-4: Sort by configured library field (BPM, Artist, Date Added, or Key):
+//                      - Decks 1-4: Sort by configured library column (see controller preferences):
 //                          Press SHIFT + LOAD on that deck
 //                          Configure per-deck sort target in XML user options
 //		* Bonus:
@@ -901,15 +901,40 @@ PioneerDDJREV1.Components.Settings = {
     },
     normalizeLibrarySortField: function(rawField, fallbackField) {
         const normalized = String(rawField || "").trim().toLowerCase();
-        if (
-            normalized === "artist" ||
-            normalized === "bpm" ||
-            normalized === "date" ||
-            normalized === "duration" ||
-            normalized === "genre" ||
-            normalized === "key" ||
-            normalized === "rating"
-        ) {
+        const allowed = new Set([
+            "artist",
+            "title",
+            "album",
+            "albumartist",
+            "year",
+            "genre",
+            "composer",
+            "grouping",
+            "tracknumber",
+            "filetype",
+            "nativelocation",
+            "comment",
+            "duration",
+            "bitrate",
+            "bpm",
+            "replaygain",
+            "date",
+            "timesplayed",
+            "rating",
+            "key",
+            "preview",
+            "coverart",
+            "position",
+            "playlistid",
+            "location",
+            "filename",
+            "filemodified",
+            "filecreated",
+            "samplerate",
+            "trackcolor",
+            "lastplayed",
+        ]);
+        if (allowed.has(normalized)) {
             return normalized;
         }
         return fallbackField;
@@ -925,12 +950,12 @@ PioneerDDJREV1.Components.Settings = {
         }
         return fallbackValue;
     },
-    normalizePflHeadphoneMode: function(rawMode, legacyStudioBoolean) {
+    normalizePflHeadphoneMode: function(rawMode) {
         const normalized = String(rawMode || "").trim();
         if (normalized === "pfl_classic" || normalized === "pfl_adjustments" || normalized === "pfl_studio") {
             return normalized;
         }
-        return legacyStudioBoolean ? "pfl_adjustments" : "pfl_classic";
+        return "pfl_adjustments";
     },
     parseBeatLoopRollSetting: function(rawValue, fallbackValue) {
         const normalized = String(rawValue || "").trim().toLowerCase();
@@ -995,8 +1020,7 @@ PioneerDDJREV1.Components.Settings = {
             PioneerDDJREV1.samplePadLayout
         );
         const configuredPflMode = this.readString("pflHeadphoneMode", "");
-        const legacyStudioPfl = this.readBoolean("studioPflAdjustment", true);
-        PioneerDDJREV1.pflHeadphoneMode = this.normalizePflHeadphoneMode(configuredPflMode, legacyStudioPfl);
+        PioneerDDJREV1.pflHeadphoneMode = this.normalizePflHeadphoneMode(configuredPflMode);
         PioneerDDJREV1.sZoom = this.readBoolean("sZoom", PioneerDDJREV1.sZoom);
         PioneerDDJREV1.brakingEnabled = this.readBoolean("brakingEnabled", PioneerDDJREV1.brakingEnabled);
         PioneerDDJREV1.brakingReverse = this.readBoolean("brakingReverse", PioneerDDJREV1.brakingReverse);
@@ -2726,34 +2750,37 @@ PioneerDDJREV1.Components.Mixer = {
             "[Channel4]": 3,
         };
         const sortByField = {
-            artist: {
-                order: 1,
-                column: 1,
-            },
-            bpm: {
-                order: 1,
-                column: 15,
-            },
-            date: {
-                order: 0,
-                column: 17,
-            },
-            duration: {
-                order: 1,
-                column: 16,
-            },
-            genre: {
-                order: 1,
-                column: 2,
-            },
-            key: {
-                order: 1,
-                column: 20,
-            },
-            rating: {
-                order: 1,
-                column: 21,
-            },
+            artist: { order: 1, column: 1 },
+            title: { order: 1, column: 2 },
+            album: { order: 1, column: 3 },
+            albumartist: { order: 1, column: 4 },
+            year: { order: 1, column: 5 },
+            genre: { order: 1, column: 6 },
+            composer: { order: 1, column: 7 },
+            grouping: { order: 1, column: 8 },
+            tracknumber: { order: 0, column: 9 },
+            filetype: { order: 1, column: 10 },
+            nativelocation: { order: 1, column: 11 },
+            comment: { order: 1, column: 12 },
+            duration: { order: 1, column: 13 },
+            bitrate: { order: 1, column: 14 },
+            bpm: { order: 1, column: 15 },
+            replaygain: { order: 1, column: 16 },
+            date: { order: 0, column: 17 },
+            timesplayed: { order: 1, column: 18 },
+            rating: { order: 1, column: 19 },
+            key: { order: 1, column: 20 },
+            preview: { order: 1, column: 21 },
+            coverart: { order: 1, column: 22 },
+            position: { order: 0, column: 23 },
+            playlistid: { order: 0, column: 24 },
+            location: { order: 1, column: 25 },
+            filename: { order: 1, column: 26 },
+            filemodified: { order: 1, column: 27 },
+            filecreated: { order: 1, column: 28 },
+            samplerate: { order: 1, column: 29 },
+            trackcolor: { order: 1, column: 30 },
+            lastplayed: { order: 1, column: 31 },
         };
         const deckIndex = deckIndexByGroup[group];
         if (deckIndex === undefined) {
