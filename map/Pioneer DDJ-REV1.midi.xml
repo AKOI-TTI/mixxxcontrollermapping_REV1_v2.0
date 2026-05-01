@@ -3,7 +3,7 @@
     <info>
         <name>Pioneer DDJ-REV1</name>
         <author>AKOI, Alexandr, LauraRozier, mjlyon, 0b1 </author>
-        <description>AKOI v2.0 mapping for the Pioneer DDJ-REV1</description>
+        <description>AKOI v2.1 mapping for the Pioneer DDJ-REV1</description>
         <forums>https://mixxx.discourse.group/t/pioneer-ddj-rev1-mapping-update-2-6/32603</forums>
     </info>
     <settings>
@@ -51,43 +51,139 @@
         </group>
         <group label="Library Sort Settings📚">
             <option variable="librarySortDeck1" type="enum" label="Deck 1 Sort (:hwbtn:`SHIFT` + :hwbtn:`LOAD`)">
+                <value label="Album">album</value>
+                <value label="Album Artist">albumartist</value>
                 <value label="Artist">artist</value>
-                <value label="BPM" default="true">bpm</value>
+                <value label="Bitrate">bitrate</value>
+                <value label="BPM 🧭" default="true">bpm</value>
+                <value label="Comment">comment</value>
+                <value label="Composer">composer</value>
+                <value label="Cover Art">coverart</value>
                 <value label="Date Added">date</value>
                 <value label="Duration">duration</value>
+                <value label="File Creation Time">filecreated</value>
+                <value label="File Modified Time">filemodified</value>
+                <value label="File Type">filetype</value>
+                <value label="Filename">filename</value>
                 <value label="Genre">genre</value>
+                <value label="Grouping">grouping</value>
                 <value label="Key">key</value>
+                <value label="Last Played">lastplayed</value>
+                <value label="Location">location</value>
+                <value label="Native Location">nativelocation</value>
+                <value label="Playlist ID">playlistid</value>
+                <value label="Position">position</value>
+                <value label="Preview">preview</value>
                 <value label="Rating">rating</value>
+                <value label="ReplayGain">replaygain</value>
+                <value label="Sample Rate">samplerate</value>
+                <value label="Times Played">timesplayed</value>
+                <value label="Title">title</value>
+                <value label="Track Color">trackcolor</value>
+                <value label="Track Number">tracknumber</value>
+                <value label="Year">year</value>
                 <description>Choose which library field Deck 1 sorts by when pressing SHIFT+LOAD.</description>
             </option>
             <option variable="librarySortDeck2" type="enum" label="Deck 2 Sort (:hwbtn:`SHIFT` + :hwbtn:`LOAD`)">
-                <value label="Artist" default="true">artist</value>
+                <value label="Album">album</value>
+                <value label="Album Artist">albumartist</value>
+                <value label="Artist 🧑‍🎨" default="true">artist</value>
+                <value label="Bitrate">bitrate</value>
                 <value label="BPM">bpm</value>
+                <value label="Comment">comment</value>
+                <value label="Composer">composer</value>
+                <value label="Cover Art">coverart</value>
                 <value label="Date Added">date</value>
                 <value label="Duration">duration</value>
+                <value label="File Creation Time">filecreated</value>
+                <value label="File Modified Time">filemodified</value>
+                <value label="File Type">filetype</value>
+                <value label="Filename">filename</value>
                 <value label="Genre">genre</value>
+                <value label="Grouping">grouping</value>
                 <value label="Key">key</value>
+                <value label="Last Played">lastplayed</value>
+                <value label="Location">location</value>
+                <value label="Native Location">nativelocation</value>
+                <value label="Playlist ID">playlistid</value>
+                <value label="Position">position</value>
+                <value label="Preview">preview</value>
                 <value label="Rating">rating</value>
+                <value label="ReplayGain">replaygain</value>
+                <value label="Sample Rate">samplerate</value>
+                <value label="Times Played">timesplayed</value>
+                <value label="Title">title</value>
+                <value label="Track Color">trackcolor</value>
+                <value label="Track Number">tracknumber</value>
+                <value label="Year">year</value>
                 <description>Choose which library field Deck 2 sorts by when pressing SHIFT+LOAD.</description>
             </option>
             <option variable="librarySortDeck3" type="enum" label="Deck 3 Sort (:hwbtn:`SHIFT` + :hwbtn:`LOAD`)">
+                <value label="Album">album</value>
+                <value label="Album Artist">albumartist</value>
                 <value label="Artist">artist</value>
+                <value label="Bitrate">bitrate</value>
                 <value label="BPM">bpm</value>
-                <value label="Date Added" default="true">date</value>
+                <value label="Comment">comment</value>
+                <value label="Composer">composer</value>
+                <value label="Cover Art">coverart</value>
+                <value label="Date Added 📅" default="true">date</value>
                 <value label="Duration">duration</value>
+                <value label="File Creation Time">filecreated</value>
+                <value label="File Modified Time">filemodified</value>
+                <value label="File Type">filetype</value>
+                <value label="Filename">filename</value>
                 <value label="Genre">genre</value>
+                <value label="Grouping">grouping</value>
                 <value label="Key">key</value>
+                <value label="Last Played">lastplayed</value>
+                <value label="Location">location</value>
+                <value label="Native Location">nativelocation</value>
+                <value label="Playlist ID">playlistid</value>
+                <value label="Position">position</value>
+                <value label="Preview">preview</value>
                 <value label="Rating">rating</value>
+                <value label="ReplayGain">replaygain</value>
+                <value label="Sample Rate">samplerate</value>
+                <value label="Times Played">timesplayed</value>
+                <value label="Title">title</value>
+                <value label="Track Color">trackcolor</value>
+                <value label="Track Number">tracknumber</value>
+                <value label="Year">year</value>
                 <description>Choose which library field Deck 3 sorts by when pressing SHIFT+LOAD.</description>
             </option>
             <option variable="librarySortDeck4" type="enum" label="Deck 4 Sort (:hwbtn:`SHIFT` + :hwbtn:`LOAD`)">
+                <value label="Album">album</value>
+                <value label="Album Artist">albumartist</value>
                 <value label="Artist">artist</value>
+                <value label="Bitrate">bitrate</value>
                 <value label="BPM">bpm</value>
+                <value label="Comment">comment</value>
+                <value label="Composer">composer</value>
+                <value label="Cover Art">coverart</value>
                 <value label="Date Added">date</value>
                 <value label="Duration">duration</value>
+                <value label="File Creation Time">filecreated</value>
+                <value label="File Modified Time">filemodified</value>
+                <value label="File Type">filetype</value>
+                <value label="Filename">filename</value>
                 <value label="Genre">genre</value>
-                <value label="Key" default="true">key</value>
+                <value label="Grouping">grouping</value>
+                <value label="Key 🔑" default="true">key</value>
+                <value label="Last Played">lastplayed</value>
+                <value label="Location">location</value>
+                <value label="Native Location">nativelocation</value>
+                <value label="Playlist ID">playlistid</value>
+                <value label="Position">position</value>
+                <value label="Preview">preview</value>
                 <value label="Rating">rating</value>
+                <value label="ReplayGain">replaygain</value>
+                <value label="Sample Rate">samplerate</value>
+                <value label="Times Played">timesplayed</value>
+                <value label="Title">title</value>
+                <value label="Track Color">trackcolor</value>
+                <value label="Track Number">tracknumber</value>
+                <value label="Year">year</value>
                 <description>Choose which library field Deck 4 sorts by when pressing SHIFT+LOAD.</description>
             </option>
         </group>
